@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +18,13 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
-    @GetMapping("text-basic")
+    @GetMapping("/text-basic")
     public String textBasic(Model model) {
         model.addAttribute("data", "Hello Spring!");
         return "basic/text-basic";
     }
 
-    @GetMapping("text-unescaped")
+    @GetMapping("/text-unescaped")
     public String textUnescaped(Model model) {
         model.addAttribute("data", "Hello <b>Spring!</b>");
         return "basic/text-unescape";
@@ -46,13 +47,13 @@ public class BasicController {
         model.addAttribute("users", list);
         model.addAttribute("userMap", map);
 
-        return "/basic/variable";
+        return "basic/variable";
     }
 
     @GetMapping("/basic-objects")
     public String basicObjects(HttpSession session) {
         session.setAttribute("sessionData", "Hello Session");
-        return "/basic/basic-objects";
+        return "basic/basic-objects";
     }
 
     @Component("helloBean")
@@ -60,6 +61,12 @@ public class BasicController {
         public String hello(String data) {
             return "Hello " + data;
         }
+    }
+
+    @GetMapping("/date")
+    public String date(Model model) {
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "basic/date";
     }
 
     @Data
