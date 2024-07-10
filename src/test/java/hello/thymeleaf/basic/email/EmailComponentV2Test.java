@@ -8,10 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class EmailComponentTest {
+class EmailComponentV2Test {
 
     @Autowired
-    private EmailComponent emailComponent;
+    private EmailComponentV2 emailComponent;
 
     @DisplayName("타임리프 템플릿을 사용해서 이메일 내용을 HTML로 생성한다.")
     @Test
